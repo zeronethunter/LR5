@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <algorithm>
 #include <vector>
+#include <set>
 bool has_element(const std::pair<int, std::string> i){
     return ((i.first >=3) && (i.first <= 8));
 }
@@ -13,6 +14,14 @@ void print_map(std::pair<int, std::string> pair){
 void print_vector(int x){
     std::cout << x << ' ';
 }
+bool isLow(int x){
+    return x<0;
+}
+
+int reverse_sort(int a, int b){
+    return a>b;
+}
+
 int main() {
     std::unordered_multimap<int, std::string> umap;
     for(int i = 1; i<=20; ++i){
@@ -50,8 +59,19 @@ int main() {
     } else {
         std::cout << "3.1.Number 3 is at index - " << index_find - vec.begin() << std::endl;
     }
-
-
-
+    std::replace_if(vec.begin(), vec.end(), isLow, 5);
+    std::cout << "3.2.New vector:\n";
+    std::for_each(vec.begin(), vec.end(), print_vector);
+    std::cout << std::endl;
+    std::sort(vec.begin(), vec.end(), reverse_sort);
+    std::cout << "3.3.New vector:\n";
+    std::for_each(vec.begin(), vec.end(), print_vector);
+    std::cout << std::endl;
+    std::set<int> set;
+    for(auto i : vec){
+        set.insert(i);
+    }
+    std::cout << "3.4.New set:\n";
+    std::for_each(set.begin(), set.end(), print_vector);
     return 0;
 }
